@@ -182,10 +182,10 @@ def run_app() -> None:
         ],
         columns=["Customer ID", "Customer Name"],
     )
-    st.dataframe(customer_frame, hide_index=True, use_container_width=True)
+    st.dataframe(customer_frame, hide_index=True, width="stretch")
 
     st.subheader("Products")
-    st.dataframe(format_products(products), hide_index=True, use_container_width=True)
+    st.dataframe(format_products(products), hide_index=True, width="stretch")
 
     customer_by_id = {int(row["customer_id"]): row for row in customers}
     product_by_id = {int(row["product_id"]): row for row in products}
@@ -343,7 +343,7 @@ def run_app() -> None:
         st.dataframe(
             format_orders([st.session_state["last_saved_order"]]),
             hide_index=True,
-            use_container_width=True,
+            width="stretch",
         )
 
     st.subheader("Order History")
@@ -351,7 +351,7 @@ def run_app() -> None:
         st.dataframe(
             format_orders(data["orders"]),
             hide_index=True,
-            use_container_width=True,
+            width="stretch",
         )
     else:
         st.info("There are no orders to display yet.")
