@@ -87,10 +87,31 @@ To print every table for troubleshooting, run `python print_tables.py`.
 
 ## Deployment and testing status
 
-The app code is prepared, but it has not been published or tested at a hosted
-URL. App URL: pending. GitHub repository URL:
-<https://github.com/mcvii65/class-20261028>. After deploying, record the
-working app URL here and document the results for: authorized app access,
-customer/product data, invalid quantity, unconfirmed submission, confirmed
-insertion, verification query, rerun without duplicate insertion, and refreshed
-order history. Include the two credential-free screenshots described above.
+Hosted app: <https://class-20261028-ilxlc9ke9rgx3cddbz3lwh.streamlit.app/>
+
+GitHub repository: <https://github.com/mcvii65/class-20261028>
+
+### Deployed application test results
+
+Tests were run against the hosted application on 2026-10-28:
+
+| Test | Result |
+|---|---|
+| Open app and authenticate | Passed; the hosted page loaded and the app password gate unlocked the interface. |
+| Load customers and products | Passed; live Supabase results displayed 20 customers and 12 products. |
+| Enter invalid quantity | Passed; entering `0` was rejected with a minimum-quantity error. |
+| Submit without confirmation | Passed; the app requested confirmation and inserted no order. The order count stayed at 63. |
+| Confirm and submit one valid order | Passed; one order was created: order `1003` for Avery Morgan, Notebook, quantity 1, unit price $4.50. Order count changed from 63 to 64. |
+| Retrieve and display verification record | Passed; a new Supabase query retrieved order `1003`, including customer/product names, stored unit price, total, and order date. |
+| Refresh after insertion | Passed; order `1003` remained in order history and the order count stayed at 64; refresh did not create a duplicate. |
+
+Screenshots below were captured from the deployed app and contain no
+credentials.
+
+#### Order-entry interface
+
+![Deployed order-entry interface](./screenshots/order_entry.png)
+
+#### Successfully verified saved order
+
+![Verified saved order and order history](./screenshots/verified_order.png)
